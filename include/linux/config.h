@@ -1,3 +1,14 @@
+/*
+ * @由于个人水平有限, 难免有些错误, 还请指点:  
+ * @Author: cpu_code
+ * @Date: 2020-08-12 19:19:54
+ * @LastEditTime: 2020-08-15 17:24:48
+ * @FilePath: \Linux_0_11\include\linux\config.h
+ * @Gitee: [https://gitee.com/cpu_code](https://gitee.com/cpu_code)
+ * @Github: [https://github.com/CPU-Code](https://github.com/CPU-Code)
+ * @CSDN: [https://blog.csdn.net/qq_44226094](https://blog.csdn.net/qq_44226094)
+ * @Gitbook: [https://923992029.gitbook.io/cpucode/](https://923992029.gitbook.io/cpucode/)
+ */
 #ifndef _CONFIG_H
 #define _CONFIG_H
 
@@ -11,6 +22,10 @@
 #define UTS_MACHINE "i386"	/* hardware type */
 
 /* Don't touch these, unless you really know what your doing. */
+// DEF_SYSSIZE = 0x3000 - 默认系统模块长度。单位是节，每节为 16 字节；
+// DEF_INITSEG = 0x9000 - 默认本程序代码移动目的段位置；
+// DEF_SETUPSEG = 0x9020 - 默认 setup 程序代码段位置；
+// DEF_SYSSEG = 0x1000 - 默认从磁盘加载系统模块到内存的段位置。
 #define DEF_INITSEG	0x9000
 #define DEF_SYSSEG	0x1000
 #define DEF_SETUPSEG	0x9020
