@@ -19,11 +19,18 @@
 #include <asm/segment.h>
 #include <asm/io.h>
 
+// 定义嵌入汇编语言宏函数
+// 圆括号括住的组合语句 ：“ ({}) ”
+// 嵌入汇编语句寄存器名称前就必须写上两个百分号 " %% "
 #define get_seg_byte(seg,addr) ({ \
-register char __res; \
-__asm__("push %%fs;mov %%ax,%%fs;movb %%fs:%2,%%al;pop %%fs" \
-	:"=a" (__res):"0" (seg),"m" (*(addr))); \
-__res;})
+register char __res; \				// 定义了一个寄存器变量 __res
+__asm__("push %%fs; \				/* "__asm__" : 嵌入汇编语句的开始 , 先保存 fs 寄存器原值（段选择符）*/
+		mov %%ax,%%fs;	\			// 用 seg 设置 fs
+		movb %%fs:%2,%%al; \		//取 seg:addr 处 1 字节内容到 al 寄存器中
+		pop %%fs" \					// 恢复 fs 寄存器原内容
+	:"=a" (__res) \					// 输出寄存器列表, " a " : 加载代码, 使用寄存器 eax, "=" : 输出寄存器 
+	:"0" (seg),"m" (*(addr))); \	// 输入寄存器列表, 将 seg 放到 eax 寄存器中， "0" : 使用与上面同个位置的输出相同的寄存器, (*(addr))表示一个内存偏移地址值
+__res;})							// 输出寄存器 eax 的值将被放入__res
 
 #define get_seg_long(seg,addr) ({ \
 register unsigned long __res; \
