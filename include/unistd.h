@@ -147,6 +147,7 @@
 #define __NR_readlink	85
 #define __NR_uselib	86
 
+// int fork() 创建进程系统调用
 #define _syscall0(type,name) \
 type name(void) \
 { \
@@ -159,6 +160,24 @@ if (__res >= 0) \
 errno = -__res; \
 return -1; \
 }
+
+/*
+展开 :
+static inline int fork(void)
+{
+	long __res;
+	__asm__ volatile ("int $0x80" 	// 调用系统中断 0x80
+	: "=a" (__res) 					// 返回值 -> eax(__res)
+	: "0" (__NR_fork));				// 输入为系统中断调用号__NR_name
+
+	if (__res >= 0)					// 如果返回值 >= 0，则直接返回该值
+		return (int) __res;
+
+	errno = -__res;					// 否则置出错号，并返回-1
+	return -1;
+}
+*/
+
 
 #define _syscall1(type,name,atype,a) \
 type name(atype a) \
