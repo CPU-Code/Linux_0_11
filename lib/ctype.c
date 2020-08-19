@@ -1,12 +1,26 @@
 /*
+ * @由于个人水平有限, 难免有些错误, 还请指点:  
+ * @Author: cpu_code
+ * @Date: 2020-08-12 19:19:54
+ * @LastEditTime: 2020-08-19 17:43:15
+ * @FilePath: \Linux_0_11\lib\ctype.c
+ * @Gitee: [https://gitee.com/cpu_code](https://gitee.com/cpu_code)
+ * @Github: [https://github.com/CPU-Code](https://github.com/CPU-Code)
+ * @CSDN: [https://blog.csdn.net/qq_44226094](https://blog.csdn.net/qq_44226094)
+ * @Gitbook: [https://923992029.gitbook.io/cpucode/](https://923992029.gitbook.io/cpucode/)
+ */
+/*
  *  linux/lib/ctype.c
  *
  *  (C) 1991  Linus Torvalds
  */
 
-#include <ctype.h>
+#include <ctype.h>      // 字符类型头文件。定义了一些有关字符类型判断和转换的宏。
 
-char _ctmp;
+char _ctmp;     // 一个临时字符变量，供 ctype.h 文件中转换字符宏函数使用
+
+// 字符特性数组(表)，定义了各个字符对应的属性，这些属性类型(如_C 等)在 ctype.h 中定义。
+// 用于判断 字符是控制字符(_C)、大写字符(_U)、小写字符(_L)等所属类型。
 unsigned char _ctype[] = {0x00,			/* EOF */
 _C,_C,_C,_C,_C,_C,_C,_C,			/* 0-7 */
 _C,_C|_S,_C|_S,_C|_S,_C|_S,_C|_S,_C,_C,		/* 8-15 */
