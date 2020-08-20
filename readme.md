@@ -2,7 +2,7 @@
  * @由于个人水平有限, 难免有些错误, 还请指点:  
  * @Author: cpu_code
  * @Date: 2020-08-13 22:49:08
- * @LastEditTime: 2020-08-19 18:38:27
+ * @LastEditTime: 2020-08-20 16:02:13
  * @FilePath: \Linux_0_11\readme.md
  * @Gitee: [https://gitee.com/cpu_code](https://gitee.com/cpu_code)
  * @Github: [https://github.com/CPU-Code](https://github.com/CPU-Code)
@@ -159,12 +159,12 @@ linux 0.11 的内核刨析解析, 代码全部注释
 - [x] [dup__复制文件描述符](lib/dup.c)
 - [x] [errno__出错号](lib/errno.c)
 - [x] [execve__加载并执行子进程](lib/execve.c)
-- [ ] [malloc](lib/malloc.c)
-- [ ] [open](lib/open.c)
-- [ ] [setsid](lib/setsid.c)
-- [ ] [string](lib/string.c)
-- [ ] [wait](lib/wait.c)
-- [ ] [write](lib/write.c)
+- [ ] [malloc__](lib/malloc.c)
+- [x] [open__打开文件](lib/open.c)
+- [x] [setsid__创建新会话](lib/setsid.c)
+- [x] [string__空声明](lib/string.c)
+- [x] [wait__等待进程终止](lib/wait.c)
+- [x] [write__写文件](lib/write.c)
 
 -------------
 
