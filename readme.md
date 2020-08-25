@@ -2,7 +2,7 @@
  * @由于个人水平有限, 难免有些错误, 还请指点:  
  * @Author: cpu_code
  * @Date: 2020-08-13 22:49:08
- * @LastEditTime: 2020-08-20 16:02:13
+ * @LastEditTime: 2020-08-22 18:11:20
  * @FilePath: \Linux_0_11\readme.md
  * @Gitee: [https://gitee.com/cpu_code](https://gitee.com/cpu_code)
  * @Github: [https://github.com/CPU-Code](https://github.com/CPU-Code)
@@ -16,7 +16,7 @@ linux 0.11 的内核刨析解析, 代码全部注释
 
 -------------
 
-## [boot__](boot)
+## [boot](boot)
 
 - [ ] [boottsect__磁盘引导块](boot/boottsect.S)
 - [ ] [head__](boot/head.s)
@@ -24,7 +24,7 @@ linux 0.11 的内核刨析解析, 代码全部注释
 
 ----------------
 
-## [fs__](fs)
+## [fs](fs)
 
 - [ ] [bitmap__](fs/bitmap.c)
 - [ ] [block_dev](fs/block_dev.c)
@@ -47,7 +47,7 @@ linux 0.11 的内核刨析解析, 代码全部注释
 
 -----------------
 
-## [include__](include)
+## [include](include)
 
 - [ ] [a.out](include/a.out.h)
 - [ ] [const](include/const.h)
@@ -97,14 +97,14 @@ linux 0.11 的内核刨析解析, 代码全部注释
 
 --------------
 
-## [init__](init)
+## [init](init)
 
 - [x] [main__内核初始化](init/main.c)
 - [ ] [main](init/main.s)
 
 -------------
 
-## [kernel__](kernel)
+## [kernel](kernel)
 
 - [x] [asm__探测异常故障处理](kernel/asm.s)
 - [ ] [exit](kernel/exit.c)
@@ -127,7 +127,7 @@ linux 0.11 的内核刨析解析, 代码全部注释
 - [ ] [ll_rw_blk](kernel/blk_drv/ll_rw_blk.c)
 - [ ] [ramdisk](kernel/blk_drv/ramdisk.c)
 
-### [chr_drv](kernel/chr_drv)
+### [chr_drv__字符设备](kernel/chr_drv)
 
 - [ ] [console](kernel/chr_drv/console.c)
 - [ ] [keyboard](kernel/chr_drv/keyboard.S)
@@ -151,7 +151,7 @@ linux 0.11 的内核刨析解析, 代码全部注释
 
 -----------------
 
-## [lib__](lib)
+## [lib](lib)
 
 - [x] [_exit__调用内核的退出系统调用](lib/_exit.c)
 - [x] [close__文件关闭函数](lib/close.c)
@@ -168,7 +168,7 @@ linux 0.11 的内核刨析解析, 代码全部注释
 
 -------------
 
-## [mm__](mm)
+## [mm](mm)
 
 - [ ] [memory__](mm/memory.c)
 - [ ] [page](mm/page.s)

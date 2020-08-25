@@ -1,4 +1,15 @@
 /*
+ * @由于个人水平有限, 难免有些错误, 还请指点:  
+ * @Author: cpu_code
+ * @Date: 2020-08-12 19:19:54
+ * @LastEditTime: 2020-08-22 20:06:51
+ * @FilePath: \Linux_0_11\include\linux\tty.h
+ * @Gitee: [https://gitee.com/cpu_code](https://gitee.com/cpu_code)
+ * @Github: [https://github.com/CPU-Code](https://github.com/CPU-Code)
+ * @CSDN: [https://blog.csdn.net/qq_44226094](https://blog.csdn.net/qq_44226094)
+ * @Gitbook: [https://923992029.gitbook.io/cpucode/](https://923992029.gitbook.io/cpucode/)
+ */
+/*
  * 'tty.h' defines some structures used by tty_io.c and some defines.
  *
  * NOTE! Don't touch this without checking that nothing in rs_io.s or
@@ -20,11 +31,11 @@ extern int NR_CONSOLES;
 #define TTY_BUF_SIZE 1024
 
 struct tty_queue {
-	unsigned long data;
-	unsigned long head;
-	unsigned long tail;
-	struct task_struct * proc_list;
-	char buf[TTY_BUF_SIZE];
+	unsigned long data;				// 等待队列缓冲区中当前数据统计值 ,  对于串口终端，则存放串口端口地址
+	unsigned long head;				// 缓冲区中数据头指针
+	unsigned long tail;				// 缓冲区中数据尾指针
+	struct task_struct * proc_list;	// 等待本缓冲队列的进程列表
+	char buf[TTY_BUF_SIZE];			// 队列的缓冲区
 };
 
 #define IS_A_CONSOLE(min)	(((min) & 0xC0) == 0x00)
@@ -56,17 +67,18 @@ struct tty_queue {
 #define SUSPEND_CHAR(tty) ((tty)->termios.c_cc[VSUSP])
 
 struct tty_struct {
-	struct termios termios;
-	int pgrp;
-	int session;
-	int stopped;
-	void (*write)(struct tty_struct * tty);
-	struct tty_queue *read_q;
-	struct tty_queue *write_q;
-	struct tty_queue *secondary;
+	struct termios termios;					// 终端 io 属性和控制字符数据结构
+	int pgrp;								// 所属进程组
+	int session;					
+	int stopped;							// 停止标志
+	void (*write)(struct tty_struct * tty);	// tty 写函数指针
+	struct tty_queue *read_q;				// tty 读队列
+	struct tty_queue *write_q;				// tty 写队列
+	struct tty_queue *secondary;			// tty 辅助队列(存放规范模式字符序列), 可称为规范(熟)模式队列
 	};
 
-extern struct tty_struct tty_table[];
+// 保存系统中每个终端设备的信息
+extern struct tty_struct tty_table[];		// tty 结构数组
 extern int fg_console;
 
 #define TTY_TABLE(nr) \

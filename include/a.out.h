@@ -3,15 +3,16 @@
 
 #define __GNU_EXEC_MACROS__
 
+// 文件头结构
 struct exec {
-  unsigned long a_magic;	/* Use macros N_MAGIC, etc for access */
-  unsigned a_text;		/* length of text, in bytes */
-  unsigned a_data;		/* length of data, in bytes */
-  unsigned a_bss;		/* length of uninitialized data area for file, in bytes */
-  unsigned a_syms;		/* length of symbol table data in file, in bytes */
-  unsigned a_entry;		/* start address */
-  unsigned a_trsize;		/* length of relocation info for text, in bytes */
-  unsigned a_drsize;		/* length of relocation info for data, in bytes */
+  unsigned long a_magic;	/* Use macros N_MAGIC, etc for access 执行文件魔数。使用 N_MAGIC 等宏访问*/
+  unsigned a_text;		/* length of text, in bytes 代码长度，字节数 */
+  unsigned a_data;		/* length of data, in bytes 数据长度，字节数 */
+  unsigned a_bss;		/* length of uninitialized data area for file, in bytes 文件中的未初始化数据区长度，字节数 */
+  unsigned a_syms;		/* length of symbol table data in file, in bytes 文件中的符号表长度，字节数 */
+  unsigned a_entry;		/* start address 执行开始地址 */
+  unsigned a_trsize;		/* length of relocation info for text, in bytes 代码重定位信息长度，字节数 */
+  unsigned a_drsize;		/* length of relocation info for data, in bytes 数据重定位信息长度，字节数 */
 };
 
 #ifndef N_MAGIC
@@ -110,14 +111,14 @@ struct exec {
 #ifndef N_NLIST_DECLARED
 struct nlist {
   union {
-    char *n_name;
-    struct nlist *n_next;
-    long n_strx;
+    char *n_name;             //字符串指针
+    struct nlist *n_next;     // 或者是指向另一个符号项结构的指针
+    long n_strx;              // 或者是符号名称在字符串表中的字节偏移值
   } n_un;
-  unsigned char n_type;
-  char n_other;
+  unsigned char n_type;       // 该字节分成 3 个字段
+  char n_other;               //  通常不用
   short n_desc;
-  unsigned long n_value;
+  unsigned long n_value;      //符号的值
 };
 #endif
 
@@ -193,26 +194,26 @@ struct nlist {
 struct relocation_info
 {
   /* Address (within segment) to be relocated.  */
-  int r_address;
+  int r_address;        //段内需要重定位的地址
   /* The meaning of r_symbolnum depends on r_extern.  */
-  unsigned int r_symbolnum:24;
+  unsigned int r_symbolnum:24;      // 含义与 r_extern 有关。指定符号表中一个符号或者一个段
   /* Nonzero means value is a pc-relative offset
      and it should be relocated for changes in its own address
      as well as for changes in the symbol or section specified.  */
-  unsigned int r_pcrel:1;
+  unsigned int r_pcrel:1;        //  1 比特。 PC 相关标志
   /* Length (as exponent of 2) of the field to be relocated.
      Thus, a value of 2 indicates 1<<2 bytes.  */
-  unsigned int r_length:2;
+  unsigned int r_length:2;       //  2 比特。指定要被重定位字段长度（ 2 的次方）
   /* 1 => relocate with value of symbol.
           r_symbolnum is the index of the symbol
 	  in file's the symbol table.
      0 => relocate with the address of a segment.
           r_symbolnum is N_TEXT, N_DATA, N_BSS or N_ABS
 	  (the N_EXT bit may be set also, but signifies nothing).  */
-  unsigned int r_extern:1;
+  unsigned int r_extern:1;       // 外部标志位。 1 - 以符号的值重定位。 0 - 以段的地址重定位
   /* Four bits that aren't used, but when writing an object file
      it is desirable to clear them.  */
-  unsigned int r_pad:4;
+  unsigned int r_pad:4;       //  没有使用的 4 个比特位，但最好将它们复位掉
 };
 #endif /* no N_RELOCATION_INFO_DECLARED.  */
 
